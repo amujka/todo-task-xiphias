@@ -1,7 +1,7 @@
-# git clone https://github.com/amujka/todo-task-xiphias.git
+git clone https://github.com/amujka/todo-task-xiphias.git
 
-# cd todo-task-xiphias
+cd todo-task-xiphias
 
-# run "npm install" to install node modules
+run "npm install" to install node modules
 
-# run "npm run dev"
+run "npm run dev"
