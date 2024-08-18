@@ -1,55 +1,68 @@
+$base-color: teal;
+$secondary-color: white;
+$error-color: red;
+$success-color: green;
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+
 html {
 	font-family: 'Courier New', Courier, monospace;
 }
 
+.app_title {
+	width: fit-content;
+	margin: 0 auto;
+	text-align: center;
+	color: $base-color;
+}
 .todo {
-	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	max-width: 1024px;
 	margin: 0 auto;
 	padding: 1rem;
-	background-color: teal;
+	border: solid $base-color 1px;
 	border-radius: 10px;
+	color: $base-color;
 
-	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	&__completed_tasks_num {
-		color: white;
+	@media only screen and (min-width: 1024px) {
+		flex-direction: row;
 	}
 
 	&__list {
+		flex: 0 0 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		margin-top: 16px;
-
+		margin-top: 15px;
 		list-style-type: none;
-	}
 
-	&__title {
-		color: white;
+		@media only screen and (min-width: 1024px) {
+			flex: 1;
+		}
 	}
 
 	&__form {
+		flex: 0 0 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+		@media only screen and (min-width: 1024px) {
+			flex-basis: 33%;
+		}
 
 		button {
 			width: 33%;
 			padding: 8px 4px;
 			border-radius: 4px;
-			outline: none;
-			border: none;
-			background-color: white;
-			color: teal;
+			border: solid 1px $base-color;
+			color: $base-color;
+			background-color: $secondary-color;
 			font-weight: bold;
 			cursor: pointer;
 
@@ -66,16 +79,20 @@ html {
 
 		label {
 			font-size: small;
-			color: white;
 		}
 
 		input {
 			width: 100%;
-			padding: 8px 4px;
+			padding: 8px;
 			border-radius: 4px;
 			border: none;
-			outline: none;
+			outline: 1px solid $base-color;
 		}
+	}
+
+	&__delete_btns_container {
+		display: flex;
+		gap: 16px;
 	}
 
 	&__task {
@@ -83,13 +100,13 @@ html {
 		justify-content: space-between;
 		align-items: center;
 		padding: 8px;
-		border: 1px solid white;
+		border: 1px solid $base-color;
 		border-radius: 4px;
-		color: white;
 
 		&--completed .todo__task_title {
 			text-decoration: line-through;
 			text-decoration-color: red;
+			color: rgba($color: $base-color, $alpha: 0.5);
 		}
 	}
 
@@ -111,18 +128,42 @@ html {
 		width: 24px;
 		height: 24px;
 		-webkit-appearance: none;
-		border: 1px solid white;
+		border: 1px solid $base-color;
 		border-radius: 50%;
-		background-color: white;
 		cursor: pointer;
 
 		&:checked {
-			background-color: red;
+			background-color: $error-color;
 		}
+	}
+
+	&__no_tasks_msg {
+		flex-basis: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	&__error {
 		font-weight: 500;
-		color: red;
+		color: $error-color;
+	}
+
+	&__toast {
+		position: fixed;
+		top: 16px;
+		right: 16px;
+		z-index: 10;
+		max-width: 250px;
+		padding: 16px;
+		color: $secondary-color;
+
+		&--success {
+			background-color: $success-color;
+		}
+
+		&--fail {
+			background-color: $error-color;
+		}
 	}
 }
